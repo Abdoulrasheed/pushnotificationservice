@@ -46,4 +46,4 @@ def home(request):
 	return render(request, temp, {'all_messages': all_messages})
 
 def messages_api(request):
-	return JsonResponse({'messages': list(Message.objects.values())})
+	return JsonResponse(list(Message.objects.values()), safe=False)
