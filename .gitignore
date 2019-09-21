@@ -96,7 +96,7 @@ ENV/
 .ropeproject
 
 # mkdocs documentation
-/site
+/onesignalkeys.py
 
 # mypy
 .mypy_cache/

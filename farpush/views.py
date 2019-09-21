@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
 import onesignal as onesignal_sdk
-from site.onesignal_keys import APP_AUTH_KEY, APP_ID
+from onesignalkeys import APP_AUTH_KEY, APP_ID
 
 def send_message(title, message):
 	# create a onesignal client
