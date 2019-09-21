@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+        	{% if messages %}
+			<ul class="messages">
+			    {% for message in messages %}
+			    <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+				  <strong>{{ message }}</strong>
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+			    {% endfor %}
+			</ul>
+			{% endif %}
+			{% if form.errors %}
+		        {% for field in form %}
+		        {% if field.errors %}
+		         {% for error in field.errors %}
+		         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+				  <strong>{{ field.label }}: {{ error }}</strong>
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+		          {% endfor %}
+		        {% endif %}
+		      {% endfor %}
+		      {% endif %}
+       	<div class="card-header">
+	        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
+	         	New Message
+	        </button>
+      	</div>
+
+        <div class="card-header">
+	        <i class="fas fa-table"></i>
+	    		Messages
+        </div>
+        
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-dark" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Message Body</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>#</th>
+                    <th>Message Title</th>
+                    <th>Message Body</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  {% for message in all_messages %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ message.title }}</td>
+                    <td title="Truncated">
+                      {{ message.body|truncatewords:2 }}
+                    </td>
+                    <td>Delivered</td>
+                    <td>{{ message.timestamp|naturaltime }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+
+        <!-- modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form action="{% url 'home' %}" method="post">{% csrf_token %}
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="form-group">
+		            <label for="recipient-name" class="col-form-label">Title:</label>
+		            <input type="text" class="form-control" name="title" id="recipient-name">
+		          </div>
+		          <div class="form-group">
+		            <label for="message-text" class="col-form-label">Message:</label>
+		            <textarea class="form-control" name="body" id="message-text"></textarea>
+		          </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Send message</button>
+		      </div>
+		    </div>
+		  </div>
+		  </form>
+		</div>
+		<!-- modal -->
+      </div>
+      <!-- /.container-fluid -->
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}
