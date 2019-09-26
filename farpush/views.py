@@ -42,8 +42,8 @@ def home(request):
 			form = MessageForm(request.POST)
 			context = {'form': form}
 			return render(request, temp, context)
-	all_messages = Message.objects.all()
+	all_messages = Message.objects.all().order_by('-id')
 	return render(request, temp, {'all_messages': all_messages})
 
 def messages_api(request):
-	return JsonResponse(list(Message.objects.values()), safe=False)
+	return JsonResponse(list(Message.objects.values().order_by('-id')), safe=False)
