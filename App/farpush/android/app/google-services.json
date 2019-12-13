@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811769048534",
+    "firebase_url": "https://farpush-c901c.firebaseio.com",
+    "project_id": "farpush-c901c",
+    "storage_bucket": "farpush-c901c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811769048534:android:49e09ebfa72441f4804877",
+        "android_client_info": {
+          "package_name": "com.farpush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811769048534-duvjbgppe749k1ih825g95l66pbaotq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIbwjOz9pRetd2-1r-EZnMBh11zOB7Ji8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811769048534-duvjbgppe749k1ih825g95l66pbaotq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
