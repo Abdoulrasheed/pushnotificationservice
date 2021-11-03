@@ -38,7 +38,7 @@ def home(request):
 			title = form.cleaned_data.get('title')
 			body = form.cleaned_data.get('body')
 			form.save()
-			status = send_message(title, body)
+			#status = send_message(title, body)
 			messages.success(request, 'Successfully send !')
 			
 			# if status:
