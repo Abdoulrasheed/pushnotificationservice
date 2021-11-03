@@ -21,9 +21,13 @@ def send_message(title, message):
 	})
 
 	# send notification, it will return a response
-	onesignal_response = onesignal_client.send_notification(new_notification)
-	print(onesignal_response.status_code)
-	print(onesignal_response.json())
+	try:
+		onesignal_response = onesignal_client.send_notification(new_notification)
+		print(onesignal_response.status_code)
+		print(onesignal_response.json())
+	except:
+		print("err")
+		return False
 
 @login_required
 def home(request):
@@ -34,9 +38,12 @@ def home(request):
 			title = form.cleaned_data.get('title')
 			body = form.cleaned_data.get('body')
 			form.save()
-			send_message(title, body)
+			status = send_message(title, body)
 
-			messages.success(request, 'Successfully send !')
+			if status:
+				messages.success(request, 'Successfully send !')
+			else:
+				messages.success(request, 'No Internet connection')
 			return redirect('home')
 		else:
 			form = MessageForm(request.POST)
