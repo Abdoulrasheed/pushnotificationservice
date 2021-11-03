@@ -39,11 +39,11 @@ def home(request):
 			body = form.cleaned_data.get('body')
 			form.save()
 			status = send_message(title, body)
-
-			if status:
-				messages.success(request, 'Successfully send !')
-			else:
-				messages.success(request, 'No Internet connection')
+			messages.success(request, 'Successfully send !')
+			
+			# if status:
+			# else:
+			# 	messages.success(request, 'No Internet connection')
 			return redirect('home')
 		else:
 			form = MessageForm(request.POST)
